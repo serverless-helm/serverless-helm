@@ -11,6 +11,7 @@
 | [command](#command)                           | `array`   | Optional | cannot be null | [CloudRun Helm Chart](values-properties-command.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/command")                           |
 | [containerPort](#containerport)               | `integer` | Optional | cannot be null | [CloudRun Helm Chart](values-properties-containerport.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/containerPort")               |
 | [description](#description)                   | `string`  | Optional | can be null    | [CloudRun Helm Chart](values-properties-description.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/description")                   |
+| [env](#env)                                   | `object`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-env.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/env")                                   |
 | [executionEnvironment](#executionenvironment) | `string`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-executionenvironment.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/executionEnvironment") |
 | [image](#image)                               | Multiple  | Required | cannot be null | [CloudRun Helm Chart](values-properties-image.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/image")                               |
 | [ingress](#ingress)                           | `string`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-ingress.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/ingress")                           |
@@ -119,6 +120,24 @@ A human-readable description of the CloudRun service.
 ### description Type
 
 `string`
+
+## env
+
+Environment variables to set in the CloudRun container.
+
+`env`
+
+* is optional
+
+* Type: `object` ([Details](values-properties-env.md))
+
+* cannot be null
+
+* defined in: [CloudRun Helm Chart](values-properties-env.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/env")
+
+### env Type
+
+`object` ([Details](values-properties-env.md))
 
 ## executionEnvironment
 

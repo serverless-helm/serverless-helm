@@ -55,6 +55,13 @@
                 "null"
             ]
         },
+        "env": {
+            "description": "Environment variables to set in the CloudRun container.",
+            "properties": {},
+            "type": [
+                "object"
+            ]
+        },
         "executionEnvironment": {
             "description": "The execution environment to use for the CloudRun container. Must be either 'gen2' or 'gen1'.",
             "type": [

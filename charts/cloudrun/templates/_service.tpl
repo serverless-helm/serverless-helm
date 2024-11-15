@@ -1,11 +1,11 @@
 {{/*
 Templates out the manifest for a CloudRun Service.
 */}}
-{{- define "cloudrun.service" -}}
+{{- define "serverless-helm.cloudrun.service" -}}
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: {{ include "cloudrun.name" . }}
+  name: {{ include "serverless-helm.cloudrun.name" . }}
   labels:
     {{- with .Values.labels }}
     {{- toYaml . | nindent 4 }}
@@ -88,7 +88,7 @@ spec:
       {{- end }}
 
       containers:
-        - image: {{ include "cloudrun.image" . }}
+        - image: {{ include "serverless-helm.cloudrun.image" . }}
           {{- with .Values.command }}
           command:
             {{- toYaml . | nindent 12 }}
@@ -97,9 +97,8 @@ spec:
           args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.env }}
-          env:
-            {{- toYaml . | nindent 12 }}
+          {{- if .Values.env }}
+          env: {{- include "serverless-helm.cloudrun.env" . | nindent 12 }}
           {{- end }}
 
           {{- with .Values.resources }}
@@ -116,7 +115,7 @@ spec:
           {{- end }}
 
           ports:
-            - containerPort: {{ include "cloudrun.containerPort" . }}
+            - containerPort: {{ include "serverless-helm.cloudrun.containerPort" . }}
 
           {{- with .Values.volumeMounts }}
           volumeMounts:

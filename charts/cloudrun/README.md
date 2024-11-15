@@ -26,7 +26,7 @@ helm template . --output-dir out
 To deploy the manifest, run the following command:
 
 ```bash
-gcloud run services replace out/cloudrun/templates/cloudrun.yaml --region=<region>
+gcloud run services replace out/cloudrun/templates/serverless-helm.cloudrun.yaml --region=<region>
 ```
 
 To clean up and delete the service, run the following command:
@@ -38,3 +38,4 @@ gcloud run services delete serverless-helm --region=<region>
 ## Configuration Reference
 
 Find the full configuration reference in the [docs/values.md](./docs/values.md) file.
+

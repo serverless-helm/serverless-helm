@@ -4,6 +4,11 @@ name: serverless-helm # @schema type:string;required:true;description:Name of th
 description: null # @schema type:[string,null];required:false;description:A human-readable description of the CloudRun service.
 launchStage: 'GA' # @schema type:[string];enum:["ALPHA","BETA","GA"];required:true;description:The launch stage of the CloudRun service. Controls feature availability and SLA.
 
+env: {} # @schema type:object;required:false;description:Environment variables to set in the CloudRun container.
+# env:
+#  FOO: bar
+#  HELLO: world
+
 # Container Configuration
 image: # @schema type:[object, string];required:true;description:Container image to deploy. You can provide a direct reference to an image or split up the inputs.
   registry: null # @schema type:[string, null];required:false;description:Container image registry.

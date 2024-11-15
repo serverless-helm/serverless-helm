@@ -1,6 +1,6 @@
 # serverless-helm
 
-Showcasing the power of using custom Helm Charts to deploy to serverless cloud providers, like Google CloudRun.
+Showcasing the power of using custom Helm Charts to deploy to serverless cloud providers, like Google serverless-helm.cloudrun.
 
 This repository demonstrates how to use Helm charts to generate deployment manifests for serverless platforms. Instead of directly deploying to these platforms, the charts generate platform-specific YAML that can be used with native deployment tools.
 

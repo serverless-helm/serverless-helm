@@ -75,26 +75,6 @@ tests:
           path: spec.template.spec.timeoutSeconds
           value: 6000
 
-  # Environment Variables Tests
-  - it: should set additional environment variables when provided
-    set:
-      env:
-        - name: DEBUG
-          value: 'true'
-        - name: API_KEY
-          value: 'secret'
-    asserts:
-      - contains:
-          path: spec.template.spec.containers[0].env
-          content:
-            name: DEBUG
-            value: 'true'
-      - contains:
-          path: spec.template.spec.containers[0].env
-          content:
-            name: API_KEY
-            value: 'secret'
-
   # Storage Tests
   - it: should set volumes when provided
     set:
@@ -380,3 +360,48 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].resources.limits.memory
           value: '512M'
+
+  # Environment Variable Tests
+  - it: should map environment variables from key-value pairs to list
+    set:
+      env:
+        FOO: bar
+        HELLO: world
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          any: true
+          content:
+            name: FOO
+            value: bar
+      - contains:
+          path: spec.template.spec.containers[0].env
+          any: true
+          content:
+            name: HELLO
+            value: world
+
+  - it: should handle empty environment variables
+    set:
+      env: {}
+    asserts:
+      - isNull:
+          path: spec.template.spec.containers[0].env
+  - it: should handle environment variables with numeric values
+    set:
+      env:
+        PORT: 8080
+        COUNT: 42
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].env
+          any: true
+          content:
+            name: PORT
+            value: '8080'
+      - contains:
+          path: spec.template.spec.containers[0].env
+          any: true
+          content:
+            name: COUNT
+            value: '42'

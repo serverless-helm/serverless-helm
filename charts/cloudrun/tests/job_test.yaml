@@ -4,7 +4,7 @@ templates:
 tests:
   - it: should render the job manifest if type is set to job
     set:
-      type: "job"
+      type: 'job'
     asserts:
       - equal:
           path: kind
