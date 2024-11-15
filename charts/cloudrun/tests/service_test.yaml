@@ -344,3 +344,39 @@ tests:
     asserts:
       - isNull:
           path: spec.template.spec.containers[0].startupProbe
+
+  # Resource Tests
+  - it: should quote CPU and memory values
+    set:
+      resources:
+        limits:
+          cpu: 1
+          memory: 512Mi
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.cpu
+          value: '1'
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: '512Mi'
+
+  # Add additional test for different memory formats
+  - it: should support different memory formats
+    set:
+      resources:
+        limits:
+          memory: 1Gi
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: '1Gi'
+
+  - it: should support megabyte memory format
+    set:
+      resources:
+        limits:
+          memory: 512M
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].resources.limits.memory
+          value: '512M'

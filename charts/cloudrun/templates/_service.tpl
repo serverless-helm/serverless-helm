@@ -97,23 +97,20 @@ spec:
           args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-
+          {{- with .Values.env }}
           env:
-            - name: PORT
-              value: {{ include "cloudrun.containerPort" . | quote }}
-            {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
-            {{- end }}
+          {{- end }}
 
           {{- with .Values.resources }}
           resources:
             {{- if .limits }}
             limits:
               {{- if .limits.cpu }}
-              cpu: {{ .limits.cpu }}
+              cpu: {{ .limits.cpu | quote }}
               {{- end }}
               {{- if .limits.memory }}
-              memory: {{ .limits.memory }}
+              memory: {{ .limits.memory | quote }}
               {{- end }}
             {{- end }}
           {{- end }}

@@ -21,7 +21,7 @@ resources: # @schema type:object;required:false;description:Resource requests an
   startupBoost: false # @schema type:boolean;default:false;required:false;description:Whether to boost the CPUs at the start of the container.
   limits:
     cpu: 1 # @schema type:integer;default:1;required:false;description:Maximum CPUs to allocate for the CloudRun container. Can be 1, 2, 4, 6, 8, or any fractional value from 0.01 to 1.
-    memory: 512MiB # @schema type:string;default:512MiB;required:false;description:Maximum memory to allocate for the CloudRun container. Requires a minimum number of CPUs of 2 over 4GiB.
+    memory: 512Mi # @schema type:string;default:512MiB;required:false;description:Maximum memory to allocate for the CloudRun container. Requires a minimum number of CPUs of 2 over 4GiB.
 
 # Scaling Configuration
 autoscaling:

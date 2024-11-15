@@ -126,3 +126,12 @@ fabric.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Helm
+out/
+# Helm
+.helm/
+*.tgz
+charts/*/charts/
+charts/*/requirements.lock
+charts/*/Chart.lock

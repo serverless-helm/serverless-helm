@@ -20,7 +20,19 @@ This Helm chart generates manifests compatible with Google Cloud Run's YAML spec
 To render the manifest for a Cloud Run service or job, run the following command:
 
 ```bash
-helm template cloudrun ./charts/cloudrun
+helm template . --output-dir out
+```
+
+To deploy the manifest, run the following command:
+
+```bash
+gcloud run services replace out/cloudrun/templates/cloudrun.yaml --region=<region>
+```
+
+To clean up and delete the service, run the following command:
+
+```bash
+gcloud run services delete serverless-helm --region=<region>
 ```
 
 ## Configuration Reference

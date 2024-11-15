@@ -3,3 +3,7 @@ name: cloudrun
 description: A Helm chart to template a Google CloudRun YAML specification.
 type: application
 version: 0.1.0
+maintainers:
+  - name: 'Michael (Silthus) Reichenbach'
+    email: 'michael@reichenbach.in'
+    url: 'https://michaelreichenbach.de'
