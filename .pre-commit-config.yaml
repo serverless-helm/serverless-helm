@@ -17,4 +17,4 @@ repos:
         name: Generate helm docs
         entry: bash -c 'helm-docs -g charts/cloudrun'
         language: system
-        files: ^charts/cloudrun/values\.yaml$
+        files: ^charts/cloudrun/(values\.yaml|README\.md\.gotmpl)$
