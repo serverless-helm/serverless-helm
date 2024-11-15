@@ -1,0 +1,34 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}
+{{ template "chart.typeBadge" . }}
+
+## Overview
+
+This Helm chart generates manifests compatible with Google Cloud Run's YAML specification. Instead of directly deploying to CloudRun, this chart generates the YAML that you can then deploy using the `gcloud run services replace` command.
+
+## Prerequisites
+
+- [Helm](https://helm.sh/) v3.x
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+- Access to a Google Cloud project with Cloud Run enabled
+
+## Usage
+
+To render the manifest for a Cloud Run service or job, run the following command:
+
+```bash
+helm template cloudrun ./charts/cloudrun
+```
+
+## Configuration Reference
+
+Find the full configuration reference in the [docs/values.md](./docs/values.md) file.
+
+{{ template "chart.maintainers" . }}
+
+## License
+
+{{ template "chart.license" . }}

@@ -1,14 +1,20 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-  - repo: https://github.com/losisin/helm-values-schema-json
-    rev: v1.6.3
+  - repo: local
     hooks:
       - id: helm-schema
-        args:
-          [
-            '-input',
-            'charts/cloudrun/values.yaml',
-            '-output',
-            'charts/cloudrun/values.schema.json',
-          ]
+        files: ^charts/cloudrun/values\.yaml$
+        name: Generate helm schema
+        entry: bash -c 'cd charts/cloudrun && helm schema'
+        language: system
+      - id: schema-docs
+        name: Generate schema documentation
+        entry: bash -c 'npx @adobe/jsonschema2md -h false -d charts/cloudrun -o charts/cloudrun/docs'
+        language: system
+        files: ^charts/cloudrun/values\.yaml$
+      - id: helm-docs
+        name: Generate helm docs
+        entry: bash -c 'helm-docs -g charts/cloudrun'
+        language: system
+        files: ^charts/cloudrun/values\.yaml$
