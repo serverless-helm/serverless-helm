@@ -2,7 +2,7 @@ apiVersion: v2
 name: serverless-helm-cloudrun
 description: A Helm chart to template a Google CloudRun YAML specification.
 type: application
-version: 0.1.0
+version: 1.0.0
 maintainers:
   - name: 'Michael Reichenbach (Silthus)'
     email: 'me@silthus.net'
