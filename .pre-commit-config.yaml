@@ -1,13 +1,18 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-  - repo: local
+  - repo: https://github.com/losisin/helm-values-schema-json
+    rev: v1.6.3
     hooks:
       - id: helm-schema
-        files: ^chart/values\.yaml$
-        name: Generate helm schema
-        entry: bash -c 'cd chart && helm schema'
-        language: system
+        args: []
+  - repo: local
+    hooks:
+      # - id: helm-schema
+      #   files: ^chart/values\.yaml$
+      #   name: Generate helm schema
+      #   entry: bash -c 'helm schema'
+      #   language: system
       - id: schema-docs
         name: Generate schema documentation
         entry: bash -c 'npx @adobe/jsonschema2md -h false -d chart -o chart/docs'

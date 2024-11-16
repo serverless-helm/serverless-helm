@@ -244,6 +244,12 @@
                 "object"
             ]
         },
+        "region": {
+            "description": "The region to deploy the CloudRun service to.",
+            "type": [
+                "string"
+            ]
+        },
         "resources": {
             "description": "Resource requests and limits for the CloudRun container. If not provided, defaults are used.",
             "properties": {
@@ -413,6 +419,7 @@
         "type",
         "name",
         "launchStage",
+        "region",
         "image"
     ],
     "title": "CloudRun Helm Chart",

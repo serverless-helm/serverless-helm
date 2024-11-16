@@ -23,6 +23,7 @@ metadata:
     {{- with .Values.ingress }}
     run.googleapis.com/ingress: {{ . }}
     {{- end }}
+    run.googleapis.com/region: {{ .Values.region }}
 spec:
   template:
     metadata:

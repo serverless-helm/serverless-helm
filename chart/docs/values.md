@@ -20,6 +20,7 @@
 | [livenessProbe](#livenessprobe)               | `object`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-livenessprobe.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/livenessProbe")               |
 | [name](#name)                                 | `string`  | Required | cannot be null | [CloudRun Helm Chart](values-properties-name.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/name")                                 |
 | [readinessProbe](#readinessprobe)             | `object`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-readinessprobe.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/readinessProbe")             |
+| [region](#region)                             | `string`  | Required | cannot be null | [CloudRun Helm Chart](values-properties-region.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/region")                             |
 | [resources](#resources)                       | `object`  | Optional | cannot be null | [CloudRun Helm Chart](values-properties-resources.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/resources")                       |
 | [serviceAccountName](#serviceaccountname)     | `string`  | Optional | can be null    | [CloudRun Helm Chart](values-properties-serviceaccountname.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/serviceAccountName")     |
 | [sessionAffinity](#sessionaffinity)           | `boolean` | Optional | cannot be null | [CloudRun Helm Chart](values-properties-sessionaffinity.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/sessionAffinity")           |
@@ -314,6 +315,24 @@ Configuration for readiness probe health checking.
 ### readinessProbe Type
 
 `object` ([Details](values-properties-readinessprobe.md))
+
+## region
+
+The region to deploy the CloudRun service to.
+
+`region`
+
+* is required
+
+* Type: `string`
+
+* cannot be null
+
+* defined in: [CloudRun Helm Chart](values-properties-region.md "https://github.com/serverless-helm/serverless-helm/charts/cloudrun#/properties/region")
+
+### region Type
+
+`string`
 
 ## resources
 

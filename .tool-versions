@@ -2,3 +2,4 @@ helm 3.14.3
 helm-docs 1.13.1
 pre-commit 3.8.0
 nodejs 20.14.0
+terraform 1.9.8

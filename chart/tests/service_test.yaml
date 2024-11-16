@@ -405,3 +405,18 @@ tests:
           content:
             name: COUNT
             value: '42'
+
+  # Region Tests
+  - it: should set default region to europe-west1
+    asserts:
+      - equal:
+          path: metadata.annotations["run.googleapis.com/region"]
+          value: europe-west1
+
+  - it: should allow overriding the region
+    set:
+      region: us-central1
+    asserts:
+      - equal:
+          path: metadata.annotations["run.googleapis.com/region"]
+          value: us-central1
