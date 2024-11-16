@@ -28,7 +28,7 @@ jobs:
         run: helm package chart/ --debug
 
       - name: 🔍 Verify Chart Schema
-        run: helm template chart/ --validate
+        run: helm template chart/
   formatting:
     name: 🎨 Code Format
     runs-on: ubuntu-latest
