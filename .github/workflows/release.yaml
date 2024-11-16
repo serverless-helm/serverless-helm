@@ -27,8 +27,6 @@ jobs:
         uses: google-github-actions/release-please-action@v4
         id: release
         with:
-          release-type: helm
-          package-name: serverless-helm-cloudrun
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📥 Checkout Repository

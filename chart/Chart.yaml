@@ -1,5 +1,5 @@
 apiVersion: v2
-name: serverless/cloudrun
+name: serverless-helm/cloudrun
 description: A Helm chart to template a Google CloudRun YAML specification.
 type: application
 version: 0.1.0
