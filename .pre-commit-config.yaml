@@ -4,17 +4,12 @@ repos:
   - repo: local
     hooks:
       - id: helm-schema
-        files: ^charts/cloudrun/values\.yaml$
+        files: ^chart/values\.yaml$
         name: Generate helm schema
-        entry: bash -c 'cd charts/cloudrun && helm schema'
+        entry: bash -c 'cd chart && helm schema'
         language: system
       - id: schema-docs
         name: Generate schema documentation
-        entry: bash -c 'npx @adobe/jsonschema2md -h false -d charts/cloudrun -o charts/cloudrun/docs'
+        entry: bash -c 'npx @adobe/jsonschema2md -h false -d chart -o chart/docs'
         language: system
-        files: ^charts/cloudrun/values\.yaml$
-      - id: helm-docs
-        name: Generate helm docs
-        entry: bash -c 'helm-docs -g charts/cloudrun'
-        language: system
-        files: ^charts/cloudrun/(values\.yaml|README\.md\.gotmpl)$
+        files: ^chart/values\.yaml$

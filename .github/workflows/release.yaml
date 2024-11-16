@@ -1,0 +1,83 @@
+name: 🚀 Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release:
+    name: 🏷️ Release Please
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      major: ${{ steps.release.outputs.major }}
+      minor: ${{ steps.release.outputs.minor }}
+    steps:
+      - name: 📦 Create Release
+        uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          release-type: helm
+          package-name: serverless-helm-cloudrun
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+      - name: 🏷️ Tag Major and Minor Versions
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN }}@github.com/google-github-actions/release-please-action.git"
+          git tag -d v${{ steps.release.outputs.major }} || true
+          git tag -d v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git push origin :v${{ steps.release.outputs.major }} || true
+          git push origin :v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} || true
+          git tag -a v${{ steps.release.outputs.major }} -m "Release v${{ steps.release.outputs.major }}"
+          git tag -a v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }} -m "Release v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
+          git push origin v${{ steps.release.outputs.major }}
+          git push origin v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+
+  publish-helm:
+    name: 📦 Publish Helm Chart
+    needs: release
+    if: needs.release.outputs.release_created
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: '3.14.3'
+
+      - name: 📦 Package Helm Chart
+        run: |
+          helm package chart/
+
+      - name: ☁️ Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: serverless-helm-cloudrun-*.tgz
+          tag_name: ${{ needs.release.outputs.tag_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔐 Set up OCI Registry Authentication
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: 🐳 Push to GitHub Container Registry
+        run: |
+          helm push serverless-helm-cloudrun-*.tgz oci://ghcr.io/${{ github.repository }}/charts

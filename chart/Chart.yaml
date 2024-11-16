@@ -1,9 +1,9 @@
 apiVersion: v2
-name: cloudrun
+name: serverless/cloudrun
 description: A Helm chart to template a Google CloudRun YAML specification.
 type: application
 version: 0.1.0
 maintainers:
-  - name: 'Michael (Silthus) Reichenbach'
-    email: 'michael@reichenbach.in'
-    url: 'https://michaelreichenbach.de'
+  - name: 'Michael Reichenbach (Silthus)'
+    email: 'me@silthus.net'
+    url: 'https://github.com/silthus'
