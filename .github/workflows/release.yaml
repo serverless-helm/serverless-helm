@@ -67,7 +67,7 @@ jobs:
           helm package chart/
 
       - name: ☁️ Upload to GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: serverless-helm-cloudrun-*.tgz
           tag_name: ${{ needs.release.outputs.tag_name }}
